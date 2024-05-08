@@ -1,14 +1,8 @@
-import { useState } from 'react'
-import './App.css'
+import "./App.scss";
+import Layout from "./components/Layout/Layout";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-     <h1>hello</h1>
-    </>
-  )
+  return <Layout />;
 }
 
-export default App
+export default App;
