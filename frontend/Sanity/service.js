@@ -1,5 +1,3 @@
-// service.js
-
 import client from "./client";
 
 export const brukerInfo = async () => {
