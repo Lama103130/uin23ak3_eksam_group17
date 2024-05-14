@@ -24,7 +24,7 @@ export default {
         name: 'genre',
         title: 'Sjanger',
         type: 'reference',
-        to: [{ type: 'genre' }], // Corrected reference to the genre type
+        to: [{ type: 'genre' }], // Corrected 
         
       },
       
