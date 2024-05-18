@@ -1,17 +1,19 @@
-import React from 'react';
-import Cover from '../assets/cover.jpg';
 
-const MovieCard = ({ title, link, image }) => {
+import React from 'react';
+
+const MovieCard = ({ movie }) => {
+  if (!movie || !movie.imdb_id) {
+    return <div>Mangler filmdata</div>;
+  }
+
   return (
-    <div className="movie-card">
-      <div className='movie_cover'>
-        <img src={Cover} alt='movie cover' width='230'/>
-      </div>
-      <div className='description'>
-        <span>
-          <a href='https://www.imdb.com/title/tt0816692/'>interstellar . (2014)</a>
-        </span>
-      </div>
+    <div className='movie_card'>
+      <a href={`https://www.imdb.com/title/${movie.imdb_id}/`} target='_blank' rel='noopener noreferrer'>
+        <img src={movie.poster} alt={movie.title} />
+        <div className='movie_info'>
+          <h4>{movie.title}</h4>
+        </div>
+      </a>
     </div>
   );
 };

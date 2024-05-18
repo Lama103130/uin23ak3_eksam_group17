@@ -1,14 +1,18 @@
-import React,{useState} from 'react'
-// import { RxAvatar } from "react-icons/rx";
-// import { RxDesktop } from "react-icons/rx";
-
+import React, { useEffect, useState } from 'react';
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState('');
+
+  useEffect(() => {
+    const username = localStorage.getItem('loggedInUser');
+    setLoggedInUser(username);
+  }, []); 
 
   const toggleVisibility = () => setIsVisible(!isVisible);
+
   return (
-  <header>
+    <header>
       <div className='logo'>
         <a href='/home'>What to see?</a>  
       </div>
@@ -16,43 +20,39 @@ const Header = () => {
         <ul>
           <li>
             <button>
-              <a href='/catch_up'>
-                {/* <RxDesktop /> */}
-                <span>Hva skai jeg se?</span>
+              <a href='/home'>
+                <span>Hva skal jeg se?</span>
               </a>
             </button>
           </li>
-          <li><a href='/bla'>bla gjennom sjangere</a></li>
+          <li><a href='/bla'>Bla gjennom sjangere</a></li>
           <li>  
-            {/* <RxAvatar /> */}
-            <span> user </span>
+            <span>{loggedInUser}</span>
           </li>
         </ul>
       </nav>
       <div className='mobile_menu'>
         <button onClick={toggleVisibility}>Menu</button>
         {isVisible && (
-        <div className='mobile_menu_container'>
-           <ul>
-            <li>
-              <button>
-                <a href='/catch_up'>
-                  {/* <RxDesktop /> */}
-                  <span>Hva skai jeg se?</span>
-                </a>
-              </button>
-            </li>
-            <li><a href='/bla'>bla gjennom sjangere</a></li>
-            <li>  
-              {/* <RxAvatar /> */}
-              <span> user </span>
-            </li>
-          </ul>
-        </div>
-      )}
+          <div className='mobile_menu_container'>
+            <ul>
+              <li>
+                <button>
+                  <a href='/catch_up'>
+                    <span>Hva skal jeg se?</span>
+                  </a>
+                </button>
+              </li>
+              <li><a href='/bla'>Bla gjennom sjangere</a></li>
+              <li>  
+                <span>{loggedInUser}</span>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
-  </header>
-  )
-}
+    </header>
+  );
+};
 
-export default Header
+export default Header;

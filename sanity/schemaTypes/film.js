@@ -3,11 +3,12 @@ export default {
     title: 'Film',
     type: 'document',
     fields: [
-        {
-        name: 'imageUrl',
-        title: '',
-        type: 'image', // bilde 
-        },
+      {
+        name: 'poster',
+        title: 'Poster',
+        type: 'image',
+        options: { hotspot: true }
+      },
       {
         name: 'title',
         title: 'Tittel',
@@ -23,8 +24,7 @@ export default {
       {
         name: 'genre',
         title: 'Sjanger',
-        type: 'reference',
-        to: [{ type: 'genre' }], // Corrected 
+        type: 'reference', to: [{ type: 'genre' }], 
         
       },
       

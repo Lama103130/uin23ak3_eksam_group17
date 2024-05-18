@@ -1,5 +1,3 @@
-// bruker.js
-
 export default {
   name: 'user',
   title: 'Bruker',
@@ -15,24 +13,21 @@ export default {
       name: 'favoriteGenres',
       title: 'Favorittsjangre',
       type: 'array',
-      of: [{ type: 'reference',
-      to: [{ type: 'genre' }] }],
+      of: [{ type: 'reference', to: [{ type: 'genre' }] }],
       
     },
     {
       name: 'wishlist',
       title: 'Ønskeliste',
       type: 'array',
-      of: [{ type: 'reference',
-      to: [{ type: 'film' }] }],
+      of: [{ type: 'reference', to: [{ type: 'film' }] }],
       
     },
     {
       name: 'favorites',
       title: 'Favorittfilmer',
       type: 'array',
-      of: [{ type: 'reference',
-      to: [{ type: 'film' }] }],
+      of: [{ type: 'reference', to: [{ type: 'film' }] }],
       
     },
     
