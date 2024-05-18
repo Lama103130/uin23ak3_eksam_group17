@@ -1,10 +1,15 @@
 import React from 'react'
+import Header from '../components/header';
+import Footer from '../components/footer'
+
 import MovieCard from '../components/movie_card'
 // import { RxStarFilled } from "react-icons/rx";
 
 const header = () => {
   const user = 'user name'
   return (
+    <>
+       <Header/>
     <section className='home_page'>
     <h3>Hei, '{user}'</h3>
     <div className='container'>
@@ -34,6 +39,11 @@ const header = () => {
 
     </div>
     </section>
+    <Footer/>
+    
+    </>
+    
+    
   )
 }
 

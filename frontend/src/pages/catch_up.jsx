@@ -1,10 +1,16 @@
 import React from 'react'
+import Header from '../components/header';
+import Footer from '../components/footer'
+
 import MovieCard from '../components/movie_card'
 
 
 const CatchUp = () => {
 
   return (
+    <>
+    <Header/>
+    
     <section className='catch_page'>
       <h2>FORSLAG FOR  MARIUS OG EGIL</h2>
       <div className='page_content'>
@@ -37,6 +43,8 @@ const CatchUp = () => {
 
       </div>
     </section>
+    <Footer/>
+    </>
   )
 }
 

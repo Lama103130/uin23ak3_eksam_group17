@@ -220,3 +220,15 @@ header{
   }
 }
 }
+
+footer{
+  width: auto;
+  height: 55px;
+  background-color: var(--primary-color);
+  text-align: center;
+  margin: auto;
+  padding: 16px;
+  span{
+    color: var(--font_color);
+  }
+}
