@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import sanityClient from '../../Sanity/client';
+import { brukerInfo } from '../../Sanity/service';
 import MovieCard from '../components/movie_card';
 
 const Home = () => {
@@ -12,7 +12,8 @@ const Home = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const userData = await sanityClient.fetch('*[_type == "user"]');
+        const userData = await brukerInfo();
+        console.log("User data fetched:", userData); // Legg til logging
         setUsers(userData);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -24,18 +25,20 @@ const Home = () => {
         const username = localStorage.getItem('loggedInUser');
         setLoggedInUser(username);
 
-        const userData = await sanityClient.fetch('*[_type == "user" && username == $username][0]', { username });
+        const userData = await brukerInfo();
+        const currentUserData = userData.find(user => user.username === username);
+        console.log("Current user data:", currentUserData); // Legg til logging
 
-        if (userData && userData.wishlist) {
-          const movieList = userData.wishlist.map(movie => ({
+        if (currentUserData && currentUserData.wishlist) {
+          const movieList = currentUserData.wishlist.map((movie, index) => ({
+            id: index, // Bruke indeks som fallback-nøkkel
             title: movie.title,
             poster: movie.poster,
             imdb_id: movie.imdb_id
           }));
-
           setMovies(movieList);
         } else {
-          console.error('UserData or wishlist is undefined:', userData);
+          console.error('UserData or wishlist is undefined:', currentUserData);
         }
       } catch (error) {
         console.error('Error fetching movies:', error);
@@ -60,13 +63,11 @@ const Home = () => {
             <span>Disse filmene ligger i ønskelisten din:</span>
           </div>
           <div className='movie_list'>
-          {movies.map((movie, index) => (
-          <MovieCard key={index} movie={movie} />
-        ))}
-
+            {movies.map((movie) => (
+              <MovieCard key={movie.imdb_id || movie.id} movie={movie} />
+            ))}
           </div>
         </div>
-
         <div className='link_box'>
           <h5>Jeg skal se sammen med...</h5>
           <ul>
