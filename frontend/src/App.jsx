@@ -1,12 +1,13 @@
+
+import "./App.scss";
+import Layout from "./components/Layout/Layout";
+
+function App() {
+  return <Layout />;
+}
+
 import React from 'react';
 
 
-const App = () => {
-  return (
-    <>
-      home
-    </>
-  );
-};
 
 export default App;

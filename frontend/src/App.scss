@@ -1,0 +1,234 @@
+/* google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+
+/*  css variables */
+:root {
+  --primary-color: #061b33;
+  --light_pink: #ffa9a9;
+  --font_color: #fff;
+}
+
+
+/* reset browser default */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--body-background);
+  transition: all 0.3s ease;
+}
+
+// =================================================================
+// ============================HEADER===============================
+// =================================================================
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 78px;
+  width: auto;
+  background-color: var(--primary-color);
+  color: var(--font_color);
+  .logo a{
+    color: var(--font_color);
+    font-size: 5vh;
+    font-weight: 700;
+    padding: 5px;
+  }
+  nav{
+    display: flex;
+    align-items: center;
+    ul li{
+      display: inline;
+      padding: 0px 10px;
+      button{
+        border: none;
+        background-color: var(--light_pink);
+        color: var(--primary-color);
+        padding: 5px 8px;
+        a{
+          color: var(--primary-color);
+        }
+      }
+      a{
+        color: var(--font_color);
+      }
+    }
+  }
+  .mobile_menu{
+    display: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    .mobile_menu_container{
+      ul li{
+        margin: 30px 0;
+          button{
+          border: none;
+        background-color: var(--light_pink);
+        color: var(--primary-color);
+        padding: 5px 8px;
+        a{
+          color: var(--primary-color);
+        }
+        }
+      }
+    }
+  }
+}
+
+// =========================================================
+// =======================movie card =======================
+// =========================================================
+
+.movie-card{
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 15px;
+  gap: 10px;
+
+}
+
+
+
+// ===========================================================
+// =====================HOME PAGE=============================
+// ===========================================================
+
+
+.home_page{
+  padding: 20px 60px;
+
+  .container{
+    display: flex;
+    flex-wrap: wrap;
+    .main_content{
+      width: auto;
+      .main_text{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 30px;
+        h5{
+          padding: 0;
+          margin: 0;
+          font-weight: 800;
+        }
+        span{
+          font-weight: 500;
+        }
+      }
+    }
+    .link_box{
+      background-color: rgb(231, 231, 231);
+      width: auto ;
+      height: auto;
+      max-height: 160px;
+      padding: 20px 20% 20px 20px;
+    }
+  }
+}
+
+
+
+// =======================================================================
+// ============================catch up page==============================
+// =======================================================================
+
+
+.catch_page{
+  padding: 20px 60px;
+
+  h2{
+    text-align: center;
+    display: block;
+    margin: 4% 0px;
+  }
+  .page_content{
+    display: flex;
+    gap: 50px;
+    .Utforsk{      
+      p{
+        width: 70%;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 950px) {
+  .catch_page{
+    .page_content{
+      flex-wrap: wrap;
+    }
+  }
+}
+
+
+
+@media (max-width: 720px) {
+  
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 78px;
+  width: auto;
+  background-color: var(--primary-color);
+  color: var(--font_color);
+  .logo a{
+    color: var(--font_color);
+    font-size: 2vh;
+    font-weight: 700;
+    padding: 5px;
+  }
+  nav{
+    display: none;
+  }
+  .mobile_menu{
+    display: block;
+    .mobile_menu_container{
+      position: absolute;
+      right: 0;
+      top: 53px;
+      transform: translateX(0px);
+      width: 220px;
+      height: 100vh;
+      background-color: var(--primary-color);
+    }
+  }
+}
+}
+
+footer{
+  width: auto;
+  height: 55px;
+  background-color: var(--primary-color);
+  text-align: center;
+  margin: auto;
+  padding: 16px;
+  span{
+    color: var(--font_color);
+  }
+}
