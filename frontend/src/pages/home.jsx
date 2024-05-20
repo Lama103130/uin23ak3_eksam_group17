@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { brukerInfo } from '../../Sanity/service';
 import MovieCard from '../components/movie_card';
+import { fetchFavoriteMoviesDetails } from '../api';
 
 const Home = () => {
   const [loggedInUser, setLoggedInUser] = useState('');
@@ -10,43 +11,33 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchData = async () => {
       try {
         const userData = await brukerInfo();
-        console.log("User data fetched:", userData); // Legg til logging
         setUsers(userData);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    };
-
-    const fetchMovies = async () => {
-      try {
+        
         const username = localStorage.getItem('loggedInUser');
-        setLoggedInUser(username);
+        if (username) {
+          setLoggedInUser(username);
+          const currentUser = userData.find(user => user.username === username);
 
-        const userData = await brukerInfo();
-        const currentUserData = userData.find(user => user.username === username);
-        console.log("Current user data:", currentUserData); // Legg til logging
-
-        if (currentUserData && currentUserData.wishlist) {
-          const movieList = currentUserData.wishlist.map((movie, index) => ({
-            id: index, // Bruke indeks som fallback-nøkkel
-            title: movie.title,
-            poster: movie.poster,
-            imdb_id: movie.imdb_id
-          }));
-          setMovies(movieList);
+          if (currentUser && currentUser.wishlist) {
+      
+            const movieDetails = await fetchFavoriteMoviesDetails(currentUser.wishlist.map(movie => movie.imdbId));
+           
+            setMovies(movieDetails);
+          } else {
+            console.error('Current user or wishlist is undefined:', currentUser);
+          }
         } else {
-          console.error('UserData or wishlist is undefined:', currentUserData);
+          console.error('No logged in user found in localStorage');
         }
       } catch (error) {
-        console.error('Error fetching movies:', error);
+        console.error('Error fetching data:', error);
       }
     };
 
-    fetchUsers();
-    fetchMovies();
+    fetchData();
   }, []);
 
   const handleUserClick = (username) => {
@@ -63,18 +54,19 @@ const Home = () => {
             <span>Disse filmene ligger i ønskelisten din:</span>
           </div>
           <div className='movie_list'>
-            {movies.map((movie) => (
-              <MovieCard key={movie.imdb_id || movie.id} movie={movie} />
-            ))}
+          {movies.map((movie, index) => (
+  <MovieCard key={movie.id || `movie-${index}`} details={movie} />
+))}
           </div>
         </div>
+
         <div className='link_box'>
           <h5>Jeg skal se sammen med...</h5>
           <ul>
             {users
               .filter(user => user.username !== loggedInUser)
               .map(user => (
-                <li key={user._id} onClick={() => handleUserClick(user.username)}>
+                <li key={user.username} onClick={() => handleUserClick(user.username)}>
                   {user.username}
                 </li>
               ))}

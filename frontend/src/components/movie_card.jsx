@@ -1,19 +1,27 @@
+import React, { useEffect, useState } from 'react';
+import { fetchMovieDetails } from '../api';
 
-import React from 'react';
+const MovieCard = ({ imdbId, details }) => {
+  const [movieDetails, setMovieDetails] = useState(null);
 
-const MovieCard = ({ movie }) => {
-  if (!movie || !movie.imdb_id) {
-    return <div>Mangler filmdata</div>;
-  }
+  useEffect(() => {
+    
+  setMovieDetails(details)  
+ 
+  
+  }, [imdbId , details]);
 
+
+
+  const imdbUrl = `https://www.imdb.com/title/${movieDetails?.results?.id}/`;
+  console.log(imdbId);
   return (
-    <div className='movie_card'>
-      <a href={`https://www.imdb.com/title/${movie.imdb_id}/`} target='_blank' rel='noopener noreferrer'>
-        <img src={movie.poster} alt={movie.title} />
-        <div className='movie_info'>
-          <h4>{movie.title}</h4>
-        </div>
+    <div className="movie-card" key={imdbId}>
+      <a href={imdbUrl} target='_blank' rel='noopener noreferrer'>
+        <img width="150" src={movieDetails?.results?.primaryImage?.url} alt={`${movieDetails?.results?.title} poster`} />
       </a>
+      <h3>{movieDetails?.results?.originalTitleText.text}</h3>
+      
     </div>
   );
 };

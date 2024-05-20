@@ -13,4 +13,4 @@ export default createSchema({
     sjanger,
     bruker,
   ])
-})
+});
