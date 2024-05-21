@@ -1,12 +1,9 @@
-import React from 'react';
+import "./App.scss";
+import Layout from "./components/Layout/Layout";
 
 
-const App = () => {
-  return (
-    <>
-      home
-    </>
-  );
-};
+function App() {
+  return <Layout />;
+}
 
 export default App;

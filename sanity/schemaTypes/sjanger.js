@@ -1,5 +1,3 @@
-// sjanger.js
-
 export default {
   name: 'genre',
   title: 'Sjanger',

@@ -1,0 +1,46 @@
+
+// userlist.scss
+
+.user-list-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-top: 70px;
+    text-align: center;
+  
+    .user-list-title {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  
+    .user-list-subtitle {
+      font-size: 25px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  
+    .user-list-item {
+      font-size: 16px;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: center;
+
+
+    }
+
+    .user-list-item li{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin: 30px 20px;
+        padding: 10px 30px;
+        font-size: 18px;
+        font-weight: 600;
+        
+        background-color: #061b33;
+        border-radius: 5px;
+        color: azure;
+        
+    }
+  }
+  

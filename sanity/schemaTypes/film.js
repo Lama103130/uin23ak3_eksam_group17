@@ -3,11 +3,7 @@ export default {
     title: 'Film',
     type: 'document',
     fields: [
-        {
-        name: 'imageUrl',
-        title: '',
-        type: 'image', // bilde 
-        },
+      
       {
         name: 'title',
         title: 'Tittel',
@@ -20,13 +16,7 @@ export default {
         type: 'string',
         
       },
-      {
-        name: 'genre',
-        title: 'Sjanger',
-        type: 'reference',
-        to: [{ type: 'genre' }], // Corrected 
-        
-      },
+      
       
     ],
   };
