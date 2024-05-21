@@ -55,8 +55,8 @@ const Home = () => {
           </div>
           <div className='movie_list'>
           {movies.map((movie, index) => (
-  <MovieCard key={movie.id || `movie-${index}`} details={movie} />
-))}
+          <MovieCard key={movie.id || `movie-${index}`} details={movie} />
+        ))}
           </div>
         </div>
 

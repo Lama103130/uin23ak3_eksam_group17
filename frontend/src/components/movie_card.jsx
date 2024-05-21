@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { fetchMovieDetails } from '../api';
 
-const MovieCard = ({ imdbId, details }) => {
+const MovieCard = ({ details }) => {
   const [movieDetails, setMovieDetails] = useState(null);
 
   useEffect(() => {
-    
-  setMovieDetails(details)  
- 
-  
-  }, [imdbId , details]);
+    setMovieDetails(details);
+    console.log('MovieCard Details:', details);
+  }, [details]);
 
+  if (!movieDetails || !movieDetails.results || !movieDetails.results.id) {
+    return <div>Loading movie details...</div>;
+  }
 
+  const { results } = movieDetails;
 
-  const imdbUrl = `https://www.imdb.com/title/${movieDetails?.results?.id}/`;
-  console.log(imdbId);
+  if (!results) {
+    return <div>Movie details not available</div>;
+  }
+
+  const imdbUrl = `https://www.imdb.com/title/${results.id}/`;
+
   return (
-    <div className="movie-card" key={imdbId}>
+    <div className="movie-card" key={results.id}>
       <a href={imdbUrl} target='_blank' rel='noopener noreferrer'>
-        <img width="150" src={movieDetails?.results?.primaryImage?.url} alt={`${movieDetails?.results?.title} poster`} />
+        <img width="150" src={results.primaryImage.url} alt={`${results.originalTitleText.text} poster`} />
       </a>
-      <h3>{movieDetails?.results?.originalTitleText.text}</h3>
-      
+      <h3>{results.originalTitleText.text}</h3>
     </div>
   );
 };

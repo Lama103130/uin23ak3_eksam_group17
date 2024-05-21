@@ -10,9 +10,7 @@ export const fetchMovieDetails = async (imdbId) => {
 
     try {
         const response = await fetch(url, options);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch movie details for ${imdbId}`);
-        }
+        
         const result = await response.json();
         console.log('Movie details for', imdbId, ':', result);
         return result;
@@ -22,7 +20,7 @@ export const fetchMovieDetails = async (imdbId) => {
     }
 };
 
-export const fetchFavoriteMoviesDetails = async (favoriteMovies) => {
+export const fetchFavoriteMoviesDetails = async (favoriteMovies, ) => {
     const movieDetailsPromises = favoriteMovies.map(imdbId => fetchMovieDetails(imdbId));
     const movieDetails = await Promise.all(movieDetailsPromises);
     console.log('Favorite movies details:', movieDetails);

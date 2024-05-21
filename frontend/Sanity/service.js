@@ -28,7 +28,7 @@ export const brukerInfo = async () => {
 
 export const filmInfo = async () => {
   try {
-    // Fetch user info first to get the list of favorite films
+   
     const brukere = await brukerInfo();
     const favoriteFilmIds = brukere.flatMap(user => user.favorites.map(fav => fav._id));
     if (favoriteFilmIds.length === 0) return [];

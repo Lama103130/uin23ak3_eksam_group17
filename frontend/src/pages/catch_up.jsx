@@ -40,7 +40,7 @@ const CatchUp = () => {
           );
 
           const sharedFavorites = currentUserData.favorites.filter(movie =>
-            compareUserData.favorites.some(compareMovie => compareMovie.imdb_id === movie.imdb_id)
+          compareUserData.favorites.some(compareMovie => compareMovie.imdb_id === movie.imdb_id)
           );
 
           const sharedWishlistDetails = await fetchFavoriteMoviesDetails(sharedWishlist.map(movie => movie.imdbId));
@@ -83,16 +83,16 @@ const CatchUp = () => {
         <div className='catch_up_section'>
           <h4>Catch Up!</h4>
           <p>Dere har {sharedWishlistMovies.length} filmer felles i ønskelistene deres.</p>
-          {sharedWishlistMovies.map(movie => (
-            <MovieCard key={movie.id ||`wishlist_${movie.imdb_id}`} details={movie} />
-          ))}
+          {sharedWishlistMovies.map((movie, index) => (
+    <MovieCard key={movie.id || `wishlist_${index}`} details={movie} />
+  ))}
         </div>
 
         <div className='Go_safe_section'>
           <h4>Go Safe!</h4>
           <p>Dere har {sharedFavoriteMovies.length} filmer felles i favorittlisten deres.</p>
-          {sharedFavoriteMovies.map(movie => (
-            <MovieCard key={movie.id ||`favorite_${movie.imdb_id}`} details={movie} />
+          {sharedFavoriteMovies.map((movie, index) => (
+            <MovieCard key={movie.id || `favorite_${index}`} details={movie} />
           ))}
         </div>
 
